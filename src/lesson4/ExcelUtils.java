@@ -7,31 +7,29 @@ import java.io.FileInputStream;
 
 import java.io.FileNotFoundException;
 
-import java.io.FileOutputStream;
-
 import java.io.IOException;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCell;
 
-import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFRow;
 
-import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class ExcelUtils {
 
-    private static XSSFSheet ExcelWSheet;
+    private static HSSFSheet ExcelWSheet;
 
-    private static XSSFWorkbook ExcelWBook;
+    private static HSSFWorkbook ExcelWBook;
 
-    private static XSSFCell Cell;
+    private static HSSFCell Cell;
 
-    private static XSSFRow Row;
+    private static HSSFRow Row;
 
     public static Object[][] getTableArray(String FilePath, String SheetName) throws Exception {
 
-        String[][] tabArray = null;
+        Double[][] tabArray = null;
 
         try {
 
@@ -39,13 +37,13 @@ public class ExcelUtils {
 
             // Access the required test data sheet
 
-            ExcelWBook = new XSSFWorkbook(ExcelFile);
+            ExcelWBook = new HSSFWorkbook(ExcelFile);
 
             ExcelWSheet = ExcelWBook.getSheet(SheetName);
 
-            int startRow = 1;
+            int startRow = 0;
 
-            int startCol = 1;
+            int startCol = 0;
 
             int ci,cj;
 
@@ -55,7 +53,7 @@ public class ExcelUtils {
 
             int totalCols = 2;
 
-            tabArray=new String[totalRows][totalCols];
+            tabArray=new Double[totalRows][totalCols];
 
             ci=0;
 
@@ -95,7 +93,7 @@ public class ExcelUtils {
 
     }
 
-    public static String getCellData(int RowNum, int ColNum) throws Exception {
+    public static Double getCellData(int RowNum, int ColNum) throws Exception {
 
         try{
 
@@ -105,11 +103,11 @@ public class ExcelUtils {
 
             if  (dataType == 3) {
 
-                return "";
+                return Double.valueOf(0);
 
             }else{
 
-                String CellData = Cell.getStringCellValue();
+                Double CellData = Cell.getNumericCellValue();
 
                 return CellData;}
 

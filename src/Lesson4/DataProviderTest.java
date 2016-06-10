@@ -29,7 +29,7 @@ public class DataProviderTest {
     @DataProvider(name = "exeption", parallel = true)
     public Object[][] Authentication() throws Exception{
 
-        Object[][] testObjArray = ExcelUtils.getTableArray("C:/TestData1.xlsx","Лист1");
+        Object[][] testObjArray = ExcelUtils.getTableArray("C:/anime/Data.xls","Лист1");
         System.out.println(testObjArray.length);
 
         return (testObjArray);
